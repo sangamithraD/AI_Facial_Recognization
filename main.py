@@ -10,7 +10,6 @@ app = FastAPI()
 DATASET = "Employee"
 DB_FILE = "employee_embeddings.pkl"
 
-# Ensure Employee folder exists
 os.makedirs(DATASET, exist_ok=True)
 
 
@@ -18,16 +17,14 @@ os.makedirs(DATASET, exist_ok=True)
 def home():
     return {"message": "Attendance Face Recognition API is running"}
 
-
-# =========================
 # Attendance Recognition API
-# =========================
+
 @app.post("/recognize")
 async def recognize(file: UploadFile = File(...)):
     temp_path = f"temp_{file.filename}"
 
     try:
-        # Save uploaded selfie temporarily
+        # Save uploaded image temporarily
         with open(temp_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
 
@@ -42,9 +39,8 @@ async def recognize(file: UploadFile = File(...)):
             os.remove(temp_path)
 
 
-# =========================
 # Add New Employee API
-# =========================
+
 @app.post("/add-employee")
 async def add_employee(
     employee_id: str = Form(...),
