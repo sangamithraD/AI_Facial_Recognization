@@ -1,3 +1,5 @@
 deepface
 numpy
 opencv-python
+uvicorn
+fastapi
