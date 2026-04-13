@@ -8,14 +8,14 @@ DB_FILE = "employee_embeddings.pkl"
 with open(DB_FILE, "rb") as f:
     employee_db = pickle.load(f)
 
-def cosine_similarity(a, b):
-    """Compute cosine similarity between two embeddings."""
+# Compute cosine similarity between two embeddings
+def cosine_similarity(a, b):  
     a = np.array(a)
     b = np.array(b)
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
+# Recognize employee from image path
 def recognize_face(image_path, threshold=0.65):
-    """Recognize employee from image path."""
     # Generate embedding for the query image
     query_embedding = DeepFace.represent(
         img_path=image_path,
